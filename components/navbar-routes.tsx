@@ -1,15 +1,31 @@
 "use client";
-import {UserButton} from "@clerk/nextjs"
-import { usePathname,useRouter } from 'next/navigation';
-export const NavbarRoutes = () => {
-    const pathname = usePathname();
-    const  router = 
-    
+import { UserButton } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { LogOut } from "lucide-react";
 
-    const isTeacherPage = pathname?.startsWith("/teacher")
-    return (
-        <div className="flex gap-x-2 ml-auto">
-            <UserButton/>
-            </div>
-    )
-}
+import { Button } from "@/components/ui/button";
+export const NavbarRoutes = () => {
+	const pathname = usePathname();
+
+	const isTeacherPage = pathname?.startsWith("/teacher");
+	const isPlayerPage = pathname?.includes("/chapter");
+	return (
+		<div className="flex gap-x-2 ml-auto">
+			{isTeacherPage || isPlayerPage ? (
+				<Link href="/">
+					<Button>
+						<LogOut className="h-4 w-4 mr-2" /> Exit
+					</Button>
+				</Link>
+			) : (
+				<Link href="/teacher/courses">
+					<Button size="sm" variant="ghost">
+						Teacher Mode
+					</Button>
+				</Link>
+			)}
+			<UserButton afterSwitchSessionUrl="/" />
+		</div>
+	);
+};

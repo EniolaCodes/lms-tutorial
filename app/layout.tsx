@@ -31,15 +31,14 @@ export default function RootLayout({
 					className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 				>
 					<header className="flex justify-between p-5">
-<h1>LMS</h1>	
+	
 					<SignedOut>
             <SignInButton />
           </SignedOut>
           <SignedIn>
-            <UserButton showName />
+            <UserButton showName afterSwitchSessionUrl="/" />
           </SignedIn>
-					</header>
-				
+					</header>			
 					{children}
 				</body>
 			</html>

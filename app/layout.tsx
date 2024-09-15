@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ClerkProvider, SignedOut, SignInButton, SignedIn, UserButton } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
+import {ToastProvider} from "@/components/providers/toaster-provider"
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -30,7 +31,7 @@ export default function RootLayout({
 				<body
 					className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 				>
-					<header className="flex justify-between p-5">
+					{/* <header className="flex justify-between p-5">
 	
 					<SignedOut>
             <SignInButton />
@@ -38,7 +39,8 @@ export default function RootLayout({
           <SignedIn>
             <UserButton showName afterSwitchSessionUrl="/" />
           </SignedIn>
-					</header>			
+					</header>			 */}
+					<ToastProvider/>
 					{children}
 				</body>
 			</html>
